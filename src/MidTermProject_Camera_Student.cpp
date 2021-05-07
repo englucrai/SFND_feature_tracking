@@ -64,12 +64,12 @@ int main(int argc, const char *argv[])
     
     cout << "CHOSEN DETECTOR: " << detectorType << "\n";
 
-    cout << "DESCRIPTORS\n";
-    cout << "AKAZE\n";
-    cout << "BRISK\n";
-    cout << "BRIEF\n";
-    cout << "FREAK\n";
-    cout << "ORB\n";
+    cout << "1) DESCRIPTORS\n";
+    cout << "2) AKAZE\n";
+    cout << "3) BRISK\n";
+    cout << "4) BRIEF\n";
+    cout << "5) FREAK\n";
+    cout << "6) ORB\n";
 
     do
     {
@@ -180,11 +180,7 @@ int main(int argc, const char *argv[])
             vector<cv::DMatch> matches;
             string matcherType = "MAT_BF";        // MAT_BF, MAT_FLANN
             string descriptorType = "DES_BINARY"; // DES_BINARY, DES_HOG
-            string selectorType = "SEL_NN";       // SEL_NN, SEL_KNN
-
-            //// STUDENT ASSIGNMENT
-            //// TASK MP.5 -> add FLANN matching in file matching2D.cpp
-            //// TASK MP.6 -> add KNN match selection and perform descriptor distance ratio filtering with t=0.8 in file matching2D.cpp
+            string selectorType = "SEL_KNN";       // SEL_NN, SEL_KNN
 
             matchDescriptors((dataBuffer.end() - 2)->keypoints, (dataBuffer.end() - 1)->keypoints,
                              (dataBuffer.end() - 2)->descriptors, (dataBuffer.end() - 1)->descriptors,
