@@ -61,15 +61,12 @@ int main(int argc, const char *argv[])
     } while (detectorType != "AKAZE" && detectorType != "BRISK" && detectorType != "FAST" &&
              detectorType != "HARRIS" && detectorType != "ORB" && detectorType != "SHITOMASI" &&
              detectorType != "SIFT" );
-    
-    cout << "CHOSEN DETECTOR: " << detectorType << "\n";
-
-    cout << "1) DESCRIPTORS\n";
-    cout << "2) AKAZE\n";
-    cout << "3) BRISK\n";
-    cout << "4) BRIEF\n";
-    cout << "5) FREAK\n";
-    cout << "6) ORB\n";
+    // DESCRIPTORS TYPES
+    cout << "1) AKAZE\n";
+    cout << "2) BRISK\n";
+    cout << "3) BRIEF\n";
+    cout << "4) FREAK\n";
+    cout << "5) ORB\n";
 
     do
     {
@@ -78,8 +75,8 @@ int main(int argc, const char *argv[])
 
     } while (descriptorType != "AKAZE" && descriptorType != "BRISK" && descriptorType != "BRIEF" &&
              descriptorType != "FREAK" && descriptorType != "ORB" );
-    
-    cout << "CHOSEN DESCRIPTOR: " << descriptorType << "\n";
+    cout << "SELECTED DETECTOR: " << detectorType << "\n";
+    cout << "SELECTED DESCRIPTOR: " << descriptorType << "\n";
 
     /* MAIN LOOP OVER ALL IMAGES */
 
@@ -161,6 +158,7 @@ int main(int argc, const char *argv[])
         // push keypoints and descriptor for current frame to end of data buffer
         (dataBuffer.end() - 1)->keypoints = keypoints;
         cout << "#2 : DETECT KEYPOINTS done" << endl;
+        cout << "Points in the vehicle ahead" << keypoints.size() << " keypoints" << endl;
 
         /* EXTRACT KEYPOINT DESCRIPTORS */
 
