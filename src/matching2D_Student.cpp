@@ -11,7 +11,8 @@ using namespace std;
 
 // Find best matches for keypoints in two camera images based on several matching methods
 void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::KeyPoint> &kPtsRef, cv::Mat &descSource, cv::Mat &descRef,
-                      std::vector<cv::DMatch> &matches, std::string descriptorType, std::string matcherType, std::string selectorType)
+                      std::vector<cv::DMatch> &matches, std::string descriptorType, std::string matcherType, std::string selectorType,
+                      int &matches_total)
 {
     // configure matcher
     bool crossCheck = false;
@@ -48,7 +49,8 @@ void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::Key
         matcher->knnMatch(descSource, descRef, knn_matches, 2); //find the 2 best matches
 
         t = ((double)cv::getTickCount()-t)/cv::getTickFrequency();
-        cout << "(KNN) with n = " << knn_matches.size() << "matches in " << 1000*t/1.0 << "ms" << endl;
+        cout << "(KNN) with n = " << knn_matches.size() << " matches in " << 1000*t/1.0 << "ms" << endl;
+        matches_total += knn_matches.size();
 
         double minDescDistRatio = 0.8;
         for (auto it = knn_matches.begin(); it != knn_matches.end(); ++it)
@@ -58,8 +60,9 @@ void matchDescriptors(std::vector<cv::KeyPoint> &kPtsSource, std::vector<cv::Key
                 matches.push_back((*it)[0]);
             }
         }
-        
+
     }
+
 }
 
 // Use one of several types of state-of-art descriptors to uniquely identify keypoints

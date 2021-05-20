@@ -24,6 +24,9 @@ int main(int argc, const char *argv[])
 
     /* INIT VARIABLES AND DATA STRUCTURES */
 
+    int keypointsvehicle = 0;
+    int matches_total = 0;
+
     // data location
     string dataPath = "../";
 
@@ -75,6 +78,7 @@ int main(int argc, const char *argv[])
 
     } while (descriptorType != "AKAZE" && descriptorType != "BRISK" && descriptorType != "BRIEF" &&
              descriptorType != "FREAK" && descriptorType != "ORB" );
+
     cout << "SELECTED DETECTOR: " << detectorType << "\n";
     cout << "SELECTED DESCRIPTOR: " << descriptorType << "\n";
 
@@ -158,7 +162,8 @@ int main(int argc, const char *argv[])
         // push keypoints and descriptor for current frame to end of data buffer
         (dataBuffer.end() - 1)->keypoints = keypoints;
         cout << "#2 : DETECT KEYPOINTS done" << endl;
-        cout << "Points in the vehicle ahead" << keypoints.size() << " keypoints" << endl;
+        //cout << "Keypoints in the vehicle ahead: " << keypoints.size() << " keypoints" << endl;
+        keypointsvehicle += keypoints.size();
 
         /* EXTRACT KEYPOINT DESCRIPTORS */
 
@@ -182,7 +187,7 @@ int main(int argc, const char *argv[])
 
             matchDescriptors((dataBuffer.end() - 2)->keypoints, (dataBuffer.end() - 1)->keypoints,
                              (dataBuffer.end() - 2)->descriptors, (dataBuffer.end() - 1)->descriptors,
-                             matches, descriptorType, matcherType, selectorType);
+                             matches, descriptorType, matcherType, selectorType, matches_total);
 
             //// EOF STUDENT ASSIGNMENT
 
@@ -212,6 +217,9 @@ int main(int argc, const char *argv[])
         }
 
     } // eof loop over all images
+
+    cout << "Total points in the vehicle ahead over all images: " << keypointsvehicle << " keypoints" << endl;
+    cout << "Total matches: " << matches_total << endl; 
 
     return 0;
 }
