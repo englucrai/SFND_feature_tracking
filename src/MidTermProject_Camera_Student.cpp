@@ -26,6 +26,8 @@ int main(int argc, const char *argv[])
 
     int keypointsvehicle = 0;
     int matches_total = 0;
+    double total_time_desc = 0;
+    double total_time_det = 0;
 
     // data location
     string dataPath = "../";
@@ -79,8 +81,8 @@ int main(int argc, const char *argv[])
     } while (descriptorType != "AKAZE" && descriptorType != "BRISK" && descriptorType != "BRIEF" &&
              descriptorType != "FREAK" && descriptorType != "ORB" );
 
-    cout << "SELECTED DETECTOR: " << detectorType << "\n";
-    cout << "SELECTED DESCRIPTOR: " << descriptorType << "\n";
+    cout << "SELECTED DETECTOR: " << detectorType << endl;
+    cout << "SELECTED DESCRIPTOR: " << descriptorType << endl;
 
     /* MAIN LOOP OVER ALL IMAGES */
 
@@ -114,11 +116,11 @@ int main(int argc, const char *argv[])
 
         if (detectorType.compare("SHITOMASI") == 0)
         {
-            detKeypointsShiTomasi(keypoints, imgGray, false);
+            detKeypointsShiTomasi(keypoints, imgGray, total_time_det, false);
         }
         else
         {
-            detKeypointsModern(keypoints, imgGray, detectorType, false);
+            detKeypointsModern(keypoints, imgGray, detectorType, total_time_det, false);
         }
 
         // only keep keypoints on the preceding vehicle
@@ -168,7 +170,7 @@ int main(int argc, const char *argv[])
         /* EXTRACT KEYPOINT DESCRIPTORS */
 
         cv::Mat descriptors;
-        descKeypoints((dataBuffer.end() - 1)->keypoints, (dataBuffer.end() - 1)->cameraImg, descriptors, descriptorType);
+        descKeypoints((dataBuffer.end() - 1)->keypoints, (dataBuffer.end() - 1)->cameraImg, descriptors, descriptorType, total_time_desc);
 
         // push descriptors for current frame to end of data buffer
         (dataBuffer.end() - 1)->descriptors = descriptors;
@@ -218,8 +220,13 @@ int main(int argc, const char *argv[])
 
     } // eof loop over all images
 
+    cout << "SELECTED DETECTOR: " << detectorType << endl;
+    cout << "SELECTED DESCRIPTOR: " << descriptorType << endl;
     cout << "Total points in the vehicle ahead over all images: " << keypointsvehicle << " keypoints" << endl;
     cout << "Total matches: " << matches_total << endl; 
+    cout << "Total time for detection: " << total_time_det << " ms" << endl;
+    cout << "Total time for description: " << total_time_desc << " ms" << endl; 
+    cout << "Total time for detection and description: " << total_time_det + total_time_desc << " ms" << endl;
 
     return 0;
 }
