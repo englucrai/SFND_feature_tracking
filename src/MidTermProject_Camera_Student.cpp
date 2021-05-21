@@ -81,9 +81,6 @@ int main(int argc, const char *argv[])
     } while (descriptorType != "AKAZE" && descriptorType != "BRISK" && descriptorType != "BRIEF" &&
              descriptorType != "FREAK" && descriptorType != "ORB" );
 
-    cout << "SELECTED DETECTOR: " << detectorType << endl;
-    cout << "SELECTED DESCRIPTOR: " << descriptorType << endl;
-
     /* MAIN LOOP OVER ALL IMAGES */
 
     for (size_t imgIndex = 0; imgIndex <= imgEndIndex - imgStartIndex; imgIndex++)
