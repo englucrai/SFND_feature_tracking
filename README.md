@@ -35,6 +35,16 @@ The idea of the camera course is to build a collision detection system - that's 
 
 ## Results
 
+The three best combination between detectors and descriptors are:
+
+1. FAST detector and BRIEF descriptor 
+
+2. FAST detector and ORB descriptor
+
+3. FAST detectro and BRISK descriptor
+
+The tests' results are displayed at the spreadsheet above:
+
 | DESCRIPTOR | TIME [ms]     | KEYPOINTS     | DETECTOR | TIME [ms]     | KEYPOINT MATCHES | %             | TOTAL TIME [ms] |
 |------------|---------------|---------------|----------|---------------|------------------|---------------|-----------------|
 | AKAZE      | 1,23618       | 1670          | AKAZE    | 1,08427       | 1491             | 0,892814371   | 2,32045         |
