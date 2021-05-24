@@ -28,7 +28,7 @@
 
 # Methodology
 
-##1.  Data Buffer Optimization
+1.  Data Buffer Optimization
 
 It was implemented one vector for a data buffer object whose size does not exceed a limit (e.g. 2 elements). 
 
@@ -36,25 +36,25 @@ The data Buffer approach is based on FIFO Logic (First In First Out). FIFO is an
 
 This implementation avoids memory problems since the memory allocated is predefined.
 
-##2. Keypoint Detection
+2. Keypoint Detection
 
 The modern detectors were implemented: HARRIS, FAST, BRISK, ORB, AKAZE, and SIFT in a function that receives the selected detector accordingly to the user's choice.
 
-##3. Keypoint Removal
+3. Keypoint Removal
 
 After detecting the key points over the whole image, it's time to set the region that contains the proceeding vehicle over all the sequence of images. A rectangle is defined and all the key points outside it are erased.
 
 Since the final result is to keep track of the time to collision within the vehicle ahead, the key points of interest are only on the vehicle ahead.
 
-##4. Keypoint Descriptors
+4. Keypoint Descriptors
 
 The  BRIEF, ORB, FREAK, AKAZE, and SIFT descriptors were implemented in a function that receives the selected detector accordingly to the user's choice, such as in the detection function.
 
-##5. Descriptor Matching
+5. Descriptor Matching
 
 FLANN matching and k-nearest neighbor selection are done. Both methods must are selectable using the respective strings in the main function.
 
-##6. Descriptor Distance Ratio
+6. Descriptor Distance Ratio
 
 The K-Nearest-Neighbor matching is used to implement the descriptor distance ratio test, which looks at the ratio of best vs. second-best match to decide whether to keep an associated pair of key points.
 
@@ -62,17 +62,17 @@ The K-Nearest-Neighbor matching is used to implement the descriptor distance rat
 
 The results are analyzed accordingly to the following criteria:
 
-##1. Performance Evaluation 1
+1. Performance Evaluation 1
 
 The total number of key points on the preceding vehicle for all 10 images.
 
-##2. Performance Evaluation 2
+2. Performance Evaluation 2
 
 The total number of matched key points for all 10 images using all possible combinations of detectors and descriptors. 
 
 In the matching step, the BF approach is used with the descriptor distance ratio set to 0.8.
 
-##2. Performance Evaluation 3
+2. Performance Evaluation 3
 
 The total time it takes for keypoint detection and descriptor extraction.
 
