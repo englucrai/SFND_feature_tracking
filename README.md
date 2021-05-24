@@ -52,7 +52,7 @@ The  BRIEF, ORB, FREAK, AKAZE, and SIFT descriptors were implemented in a functi
 
 5. Descriptor Matching
 
-FLANN matching and k-nearest neighbor selection are done. Both methods must are selectable using the respective strings in the main function.
+FLANN matching and k-nearest neighbor selection are done. Both methods are selectable using the respective strings in the main function.
 
 6. Descriptor Distance Ratio
 
