@@ -80,11 +80,11 @@ The results are displayed in the following spreadsheet.
 
 The analyses of the results, such as total time for detection and description, neighborhood size and distribution of key points detected, percentage of matched keypoints allows to indicate the TOP 3 detector-descriptor combinations:
 
-1. FAST detector and BRIEF descriptor 
+1. FAST detector and BRIEF descriptor;
 
-2. FAST detector and ORB descriptor
+2. FAST detector and ORB descriptor;
 
-3. FAST detector and BRISK descriptor
+3. FAST detector and BRISK descriptor.
 
 The tests' results are displayed at the spreadsheet above:
 
