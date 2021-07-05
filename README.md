@@ -84,7 +84,7 @@ The analyses of the results, such as total time for detection and description, n
 
 2. FAST detector and ORB descriptor
 
-3. FAST detectro and BRISK descriptor
+3. FAST detector and BRISK descriptor
 
 The tests' results are displayed at the spreadsheet above:
 
